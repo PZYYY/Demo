@@ -1,14 +1,18 @@
 // pages/multiSeletor.js
 Page({
   data: {
-
+    multiArray: [],
+    multiIndex: [0, 0, 0, 0, 0],
+    currentYear: 2019,
+    currentMonth: 5,
+    currentDate: 31
   },
 
   onLoad: function (options) {
     this.init()
   },
   init () {
-    new Promise((resolve, reject) => {
+    // new Promise((resolve, reject) => {
       let dateObj = {
         year: [],
         month: [],
@@ -42,13 +46,13 @@ Page({
         if (i < 10) { i = '0' + i }
         dateObj.minute.push(i + '')
       }
-      resolve(dateObj)
-    }).then(({ year, month, day, hour, minute }) => {
+      // resolve(dateObj)
+    // }).then(({ year, month, day, hour, minute }) => {
       this.setData({
-        multiArray: [year, month, day, hour, minute], // 选择器二维数组
+        multiArray: [dateObj.year, dateObj.month, dateObj.day, dateObj.hour, dateObj.minute], // 选择器二维数组
         multiIndex: [0, this.data.currentMonth - 1, this.data.currentDate - 1, 0, 0] // 初始日期时间
       })
-    })
+    // })
   },
 
   bindMultiPickerColumnChange(e) {
@@ -56,17 +60,17 @@ Page({
       this.data.currentYear = e.detail.column == 0 ? this.data.currentYear + e.detail.value : this.data.currentYear,
         this.data.currentMonth = e.detail.column == 1 ? e.detail.value + 1 : this.data.currentMonth
       this.data.multiArray[2] = []
-      new Promise((resolve, reject) => {
+      // new Promise((resolve, reject) => {
         for (let i = 1; i <= (new Date(this.data.currentYear, this.data.currentMonth, 0).getDate()); i++) {
           if (i < 10) { i = '0' + i }
           this.data.multiArray[2].push(i + '') // 动态改变“日”数组
         }
-        resolve(this.data.multiArray[2])
-      }).then(resArray => {
+        // resolve(this.data.multiArray[2])
+      // }).then(resArray => {
         this.setData({
-          'multiArray[2]': resArray
+          'multiArray[2]': this.data.multiArray[2]
         })
-      })
+      // })
     }
   },
 

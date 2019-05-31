@@ -1,8 +1,9 @@
 {
   "pages": [
-    "mini-program/pages/multiSeletor/multiSeletor",
-    "mini-program/pages/index/index",
-    "mini-program/pages/logs/logs"
+    "pages/multiSeletor2/multiSeletor2",
+    "pages/multiSeletor/multiSeletor",
+    "pages/index/index",
+    "pages/logs/logs"
   ],
   "window": {
     "backgroundTextStyle": "light",
